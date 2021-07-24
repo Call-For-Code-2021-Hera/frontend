@@ -6,6 +6,7 @@ export function Rotas() {
         <>
             <Router>
                 <Switch>
+                    <Route exact path="/" component={CadastroUsuario}></Route>
                     <Route exact path="/usuario" component={CadastroUsuario}></Route>
                 </Switch>
             </Router>
