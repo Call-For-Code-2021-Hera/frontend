@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.a617e044.chunk.css",
-    "main.js": "/frontend/static/js/main.7e6be570.chunk.js",
-    "main.js.map": "/frontend/static/js/main.7e6be570.chunk.js.map",
-    "runtime-main.js": "/frontend/static/js/runtime-main.3fad1094.js",
-    "runtime-main.js.map": "/frontend/static/js/runtime-main.3fad1094.js.map",
-    "static/js/2.0552a454.chunk.js": "/frontend/static/js/2.0552a454.chunk.js",
-    "static/js/2.0552a454.chunk.js.map": "/frontend/static/js/2.0552a454.chunk.js.map",
-    "static/js/3.d9498f04.chunk.js": "/frontend/static/js/3.d9498f04.chunk.js",
-    "static/js/3.d9498f04.chunk.js.map": "/frontend/static/js/3.d9498f04.chunk.js.map",
+    "main.css": "/frontend/static/css/main.ba3d1281.chunk.css",
+    "main.js": "/frontend/static/js/main.80750f6e.chunk.js",
+    "main.js.map": "/frontend/static/js/main.80750f6e.chunk.js.map",
+    "runtime-main.js": "/frontend/static/js/runtime-main.a15cd702.js",
+    "runtime-main.js.map": "/frontend/static/js/runtime-main.a15cd702.js.map",
+    "static/js/2.211aa805.chunk.js": "/frontend/static/js/2.211aa805.chunk.js",
+    "static/js/2.211aa805.chunk.js.map": "/frontend/static/js/2.211aa805.chunk.js.map",
+    "static/js/3.94ca6ec9.chunk.js": "/frontend/static/js/3.94ca6ec9.chunk.js",
+    "static/js/3.94ca6ec9.chunk.js.map": "/frontend/static/js/3.94ca6ec9.chunk.js.map",
     "index.html": "/frontend/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/frontend/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.0552a454.chunk.js.LICENSE.txt": "/frontend/static/js/2.0552a454.chunk.js.LICENSE.txt"
+    "static/css/main.ba3d1281.chunk.css.map": "/frontend/static/css/main.ba3d1281.chunk.css.map",
+    "static/js/2.211aa805.chunk.js.LICENSE.txt": "/frontend/static/js/2.211aa805.chunk.js.LICENSE.txt",
+    "static/media/logo-provisoria.9f064eed.png": "/frontend/static/media/logo-provisoria.9f064eed.png",
+    "static/media/reciclagem-icon.dc1dfd6e.png": "/frontend/static/media/reciclagem-icon.dc1dfd6e.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3fad1094.js",
-    "static/js/2.0552a454.chunk.js",
-    "static/css/main.a617e044.chunk.css",
-    "static/js/main.7e6be570.chunk.js"
+    "static/js/runtime-main.a15cd702.js",
+    "static/js/2.211aa805.chunk.js",
+    "static/css/main.ba3d1281.chunk.css",
+    "static/js/main.80750f6e.chunk.js"
   ]
 }
