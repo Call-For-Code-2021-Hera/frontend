@@ -10,29 +10,25 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-export function CadastroUsuario() {
+export function CadastroAssociacao() {
     const classes = useStyles();
 
     const history = useHistory();
 
     const [nome, setNome] = useState('');
     const [senha, setSenha] = useState('');
-    const [idCliente, setIdCliente] = useState('');
-
 
 
     const handleSubmit = async () => {
         // await api.get("login/1234").then(({ data }) => {
-        //         api.post('login/cadastrar', {
+        //     let response = api.post('login/cadastrar', {
         //         usuario: nome,
         //         senha: data.senha,
-        //     }).then(({data})=>{
-        //         console.log(data);
         //     })
+        //     console.log(response);
         // })
 
-        history.push('/cadastro/usuario/id')
-
+        history.push('/cadastro/associacao/id')
 
     }
 
@@ -43,10 +39,10 @@ export function CadastroUsuario() {
                     <img src={LogoImg} />
                 </Grid>
             </Grid>
-            <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
+            <Grid container justifyContent="center" style={{marginBottom: '10px'}}>
                 <Grid item>
                     <Typography variant="h4" color="primary">
-                        Cadastro Usuário
+                        Cadastro Associação
                     </Typography>
                 </Grid>
             </Grid>
@@ -55,7 +51,7 @@ export function CadastroUsuario() {
                 handleSubmit();
             }}>
                 <Grid container justifyContent="center" spacing={3}>
-                    <Grid item xs={10} md={7}>
+                    <Grid item xs={10}>
                         <TextField
                             variant="outlined"
                             value={nome}
@@ -65,7 +61,7 @@ export function CadastroUsuario() {
                             name="usuario"
                             label="Usuario" />
                     </Grid>
-                    <Grid item xs={10} md={7}>
+                    <Grid item xs={10}>
                         <TextField
                             variant="outlined"
                             value={senha}
@@ -79,7 +75,7 @@ export function CadastroUsuario() {
                     <Grid item xs={12}>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                <Box my={3} style={{ boxSizing: 'border-box' }}>
+                                <Box my={3} style={{boxSizing: 'border-box'}}>
                                     <Button variant="contained" color="primary" type="submit">
                                         Cadastrar
                                     </Button>

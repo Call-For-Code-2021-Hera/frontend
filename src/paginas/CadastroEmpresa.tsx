@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-export function CadastroUsuario() {
+export function CadastroEmpresa() {
     const classes = useStyles();
 
     const history = useHistory();
@@ -31,7 +31,7 @@ export function CadastroUsuario() {
         //     })
         // })
 
-        history.push('/cadastro/usuario/id')
+        history.push('/cadastro/empresa/id')
 
 
     }
@@ -46,7 +46,7 @@ export function CadastroUsuario() {
             <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
                 <Grid item>
                     <Typography variant="h4" color="primary">
-                        Cadastro Usuário
+                        Cadastro Empresa
                     </Typography>
                 </Grid>
             </Grid>
