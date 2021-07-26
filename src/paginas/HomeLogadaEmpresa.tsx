@@ -1,4 +1,8 @@
-import { Box, Button, Grid, LinearProgress, makeStyles, Typography, useTheme } from "@material-ui/core";
+import { Box, Button, Divider, Grid, LinearProgress, makeStyles, Typography, useTheme } from "@material-ui/core";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { LogOutButton } from "../components/buttons";
+import apiUsuario from "../services/apiUsuario";
 
 const useStyles = makeStyles((theme) => ({
     mainContent: {
@@ -14,9 +18,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export function HomeLogada() {
+export function HomeLogadaEmpresa() {
     const theme = useTheme()
     const classes = useStyles(theme);
+    const history = useHistory();
+
+
+    const [endereco, setEndereco] = useState<any>(null);
+    const [nome, setNome] = useState<any>(null);
+    const [nuCpfCnpj, setNuCpfCnpj] = useState<any>(null);
+    const [telefone, setTelefone] = useState<any>(null);
+
+    const getUsuario = async () => {
+        const response = await apiUsuario.get('/usuario/' + localStorage.getItem('idCliente'))
+        console.log(response);
+        setNome(response.data.nome)
+        setNuCpfCnpj(response.data.nuCpfCnpj)
+        setEndereco(response.data.endereco)
+        setTelefone(response.data.telefone)
+
+    }
+    useEffect(() => {
+        let a = getUsuario();
+    }, [])
+
     return (
         <>
             <Grid container className={classes.mainContent} justifyContent="center">
@@ -30,32 +55,20 @@ export function HomeLogada() {
                                 <Grid item>
                                     <Grid container spacing={3}>
                                         <Grid item xs={12} spacing={2}>
-                                            <Button fullWidth={true} variant="contained" color="primary">
+                                            <Button
+                                                onClick={() => {
+                                                    history.push('/relatorio-list')
+                                                }} fullWidth={true} variant="contained" color="primary">
                                                 <Typography variant="caption">
-                                                    Solicitar coleta
+                                                    Relatórios
                                                 </Typography>
                                             </Button>
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <Button fullWidth={true} variant="contained" color="primary">
-                                                <Typography variant="caption">
-                                                    Historico
-                                                </Typography>
-                                            </Button>
 
-                                        </Grid>
                                         <Grid item xs={12}>
-                                            <Button fullWidth={true} variant="contained">
-                                                <Typography variant="caption">
-                                                    Sair
-                                                </Typography>
-                                            </Button>
-
+                                            <LogOutButton />
                                         </Grid>
                                     </Grid>
-
-
-
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -64,11 +77,11 @@ export function HomeLogada() {
                                 <Grid container direction="column">
                                     <Grid item xs={12}>
                                         <Typography variant="h5" color="primary" style={{ fontWeight: 'bold' }}>
-                                            Carlos Eduardo
+                                            {nome}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <LinearProgress style={{ height: 10, borderRadius: '100px', marginBottom: '30px' }} variant="determinate" value={50} />
+                                        <Divider></Divider>
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -79,13 +92,21 @@ export function HomeLogada() {
                                 Descrição:
                             </Typography>
                         </Grid>
+
                         <Grid item>
                             <Grid container justifyContent="center">
                                 <Grid item xs={12} md={7}>
                                     <div className={classes.descricaoContainer}>
                                         <Typography variant="body2" style={{ lineHeight: 1.8 }}>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam quaerat ratione beatae fugiat aspernatur adipisci veniam incidunt tempore explicabo impedit. Saepe impedit voluptatibus expedita aperiam consequuntur reiciendis ipsam. Sit, similique.
-
+                                            <Typography display="block">
+                                                CPF/CNPJ: {nuCpfCnpj}
+                                            </Typography>
+                                            <Typography display="block">
+                                                TELEFONE: {telefone}
+                                            </Typography>
+                                            <Typography display="block">
+                                                ENDERECO: {endereco}
+                                            </Typography>
                                         </Typography>
                                     </div>
                                 </Grid>

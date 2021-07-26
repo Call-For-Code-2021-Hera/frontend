@@ -20,7 +20,7 @@ export function HomePage() {
         <>
             <Grid container justifyContent="center">
                 <Grid item>
-                    <img src={LogoImg} />
+                <img style={{width: '150px'}}src={LogoImg} />
                 </Grid>
             </Grid>
 

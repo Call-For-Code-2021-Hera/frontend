@@ -6,7 +6,10 @@ import { useHistory, useParams } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 import api from "../services/api";
+import apiUsuario from "../services/apiUsuario";
+
 import LogoImg from '../assets/img/logo-provisoria.png';
+import { ListaDeEnderecos } from "../utils/Enderecos";
 
 const useStyles = makeStyles(() => ({
     formContainer: {
@@ -17,10 +20,10 @@ const useStyles = makeStyles(() => ({
 export function CadastroEmpresaDetalhes() {
     const classes = useStyles();
 
-    const { id } = useParams<{ id: string }>();
-    console.log(id);
 
     const history = useHistory();
+
+    const { id } = useParams<{ id: string }>();
 
     const [nome, setNome] = useState('');
     const [endereco, setEndereco] = useState('');
@@ -28,20 +31,30 @@ export function CadastroEmpresaDetalhes() {
     const [nuCpfCnpj, setNuCpfCnpj] = useState('');
     const [email, setEmail] = useState('');
 
+    const ListaEnderecos = ListaDeEnderecos();
+
+
 
     const [idCliente, setIdCliente] = useState('');
+    
+    function getRandomIntInclusive(min: any, max: any) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    }
 
     const handleSubmit = async () => {
-        // await api.get("login/1234").then(({ data }) => {
-        //         api.post('login/cadastrar', {
-        //         usuario: nome,
-        //         senha: data.senha,
-        //     }).then(({data})=>{
-        //         console.log(data);
-        //     })
-        // })
-
-        console.log(telefone.replace(/\D/g, ''));
+        await apiUsuario.post('/usuario/cadastrar', {
+            clienteId: id,
+            nome: nome,
+            endereco: ListaEnderecos[getRandomIntInclusive(1, 30)],
+            nuCpfCnpj: nuCpfCnpj,
+            email: email,
+            tipo: 'empresa',
+            telefone: telefone.replace(/\D/g, '')
+        })
+        
+        history.push('/login');
 
     }
 
@@ -49,7 +62,7 @@ export function CadastroEmpresaDetalhes() {
         <>
             <Grid container justifyContent="center">
                 <Grid item>
-                    <img src={LogoImg} />
+                <img style={{width: '150px'}}src={LogoImg} />
                 </Grid>
             </Grid>
             <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>

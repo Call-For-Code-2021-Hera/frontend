@@ -15,32 +15,36 @@ export function CadastroUsuario() {
 
     const history = useHistory();
 
-    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
     const [idCliente, setIdCliente] = useState('');
 
 
 
     const handleSubmit = async () => {
-        // await api.get("login/1234").then(({ data }) => {
-        //         api.post('login/cadastrar', {
-        //         usuario: nome,
-        //         senha: data.senha,
-        //     }).then(({data})=>{
-        //         console.log(data);
-        //     })
-        // })
-
-        history.push('/cadastro/usuario/id')
-
-
+        await api.get("login/" + senha).then(async ({ data }) => {
+           const responseCadastrar = await api.post('login/cadastrar', {
+                usuario: email,
+                senha: data.senha,
+            })
+            let response = await api.post('login/', {
+                usuario: email,
+                senha: data.senha
+            })
+            if (response.data.token !== undefined) {
+                localStorage.setItem('tokenCliente', response.data.token);
+                console.log('clienteId', data)
+                history.push(`/cadastro/usuario/${responseCadastrar.data.idCliente}`)
+            }
+        })
     }
 
     return (
         <>
             <Grid container justifyContent="center">
                 <Grid item>
-                    <img src={LogoImg} />
+                <img style={{width: '150px'}}src={LogoImg} />
                 </Grid>
             </Grid>
             <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
@@ -58,12 +62,12 @@ export function CadastroUsuario() {
                     <Grid item xs={10} md={7}>
                         <TextField
                             variant="outlined"
-                            value={nome}
-                            onChange={(event) => { setNome(event.target.value) }}
+                            value={email}
+                            onChange={(event) => { setEmail(event.target.value) }}
                             fullWidth={true}
                             id="usuario"
                             name="usuario"
-                            label="Usuario" />
+                            label="E-mail" />
                     </Grid>
                     <Grid item xs={10} md={7}>
                         <TextField

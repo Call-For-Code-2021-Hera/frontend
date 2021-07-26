@@ -21,7 +21,7 @@ export function PreCadastro() {
             <div className={classes.mainContent}>
                 <Grid container justifyContent="center">
                     <Grid item>
-                        <img src={LogoImg} />
+                    <img style={{width: '150px'}}src={LogoImg} />
                     </Grid>
                 </Grid>
                 <Grid container justifyContent="center" style={{ marginBottom: '20px' }}>

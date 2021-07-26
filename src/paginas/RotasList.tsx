@@ -1,6 +1,9 @@
 import { Box, Button, Grid, makeStyles, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { CardLocal } from "../components/card-local";
+import LogoImg from '../assets/img/logo-provisoria.png';
+import { useHistory } from "react-router-dom";
+
 
 
 const useStyles = makeStyles(() => ({
@@ -13,12 +16,14 @@ const useStyles = makeStyles(() => ({
     localContainer: {
         borderRadiu: '30px',
         background: '#FAFAFA',
-        padding: '30px',    
+        padding: '30px',
     }
 }))
 
-export function MinhasRotas() {
+export function RotasList() {
     const classes = useStyles();
+
+    const history = useHistory();
 
     const [localList, setLocalList] = useState([
         {
@@ -40,13 +45,18 @@ export function MinhasRotas() {
 
     return (
         <>
+            <Grid container justifyContent="center">
+                <Grid item>
+                <img style={{width: '150px'}}src={LogoImg} />
+                </Grid>
+            </Grid>
             <div className={classes.mainContent}>
                 <Grid container>
                     <Grid xs={12}>
                         <Grid container>
                             <Grid item xs={12}>
                                 <Box my={3}>
-                                    <Typography style={{ fontWeight: 'bold' }} color="primary" variant="h3">
+                                    <Typography style={{ fontWeight: 'bold' }} color="primary" variant="h5">
                                         Minhas rotas:
                                     </Typography>
                                 </Box>
@@ -59,6 +69,9 @@ export function MinhasRotas() {
                                 return (
                                     <Grid item xs={12} md={6}>
                                         <CardLocal
+                                            onClick={()=>{
+                                                history.push('rotas-list/id')
+                                            }}
                                             nomeUsuario={item.nomeUsuario}
                                             contato={item.contato}
                                             endereco={item.endereco}></CardLocal>
@@ -68,8 +81,6 @@ export function MinhasRotas() {
                         </Grid>
                     </Grid>
                 </Grid>
-
-
             </div>
         </>
     )

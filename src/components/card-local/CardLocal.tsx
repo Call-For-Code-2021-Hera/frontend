@@ -5,6 +5,7 @@ interface LocalProps {
     nomeUsuario: string;
     endereco: string;
     contato: string;
+    onClick: any
 }
 
 const useStyles = makeStyles(() => ({
@@ -19,7 +20,7 @@ export function CardLocal(props: LocalProps) {
 
     return (
         <>
-            <Card className={classes.localContainer}>
+            <Card onClick={props.onClick} className={classes.localContainer}>
                 <CardActionArea>
                     <CardContent>
                         <Typography gutterBottom variant="h5">
@@ -31,7 +32,6 @@ export function CardLocal(props: LocalProps) {
                         <Typography gutterBottom variant="h6">
                             {props.contato}
                         </Typography>
-
                     </CardContent>
                 </CardActionArea>
             </Card>

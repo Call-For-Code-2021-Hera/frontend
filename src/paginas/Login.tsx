@@ -2,6 +2,8 @@ import { Box, Button, Grid, makeStyles, TextField, Typography } from "@material-
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import api from "../services/api";
+import apiUsuario from "../services/apiUsuario";
+
 import LogoImg from '../assets/img/logo-provisoria.png';
 
 const useStyles = makeStyles(() => ({
@@ -20,15 +22,22 @@ export function Login() {
 
 
     const handleSubmit = async () => {
-        // await api.get("login/1234").then(({ data }) => {
-        //     let response = api.post('login/cadastrar', {
-        //         usuario: nome,
-        //         senha: data.senha,
-        //     })
-        //     console.log(response);
-        // })
+        let response = await api.get("login/" + senha).then(async ({ data }) => {
 
-        history.push('/homelogada')
+            let response = await api.post('login/', {
+                usuario: nome,
+                senha: data.senha,
+            })
+            console.log(response);
+            if (response.data.token !== undefined) {
+                let responseUsuario = await apiUsuario.get('/usuario/' + response.data.idCliente)
+                console.log(responseUsuario);
+                localStorage.setItem(`idCliente`, responseUsuario.data.clienteId)
+                
+                history.push('./homelogada/'+ responseUsuario.data.tipo)
+            }
+        }
+        )
 
     }
 
@@ -36,10 +45,10 @@ export function Login() {
         <>
             <Grid container justifyContent="center">
                 <Grid item>
-                    <img src={LogoImg} />
+                <img style={{width: '150px'}}src={LogoImg} />
                 </Grid>
             </Grid>
-            <Grid container justifyContent="center" style={{marginBottom: '10px'}}>
+            <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
                 <Grid item>
                     <Typography variant="h4" color="primary">
                         Login
@@ -75,7 +84,7 @@ export function Login() {
                     <Grid item xs={12}>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                <Box my={3} style={{boxSizing: 'border-box'}}>
+                                <Box my={3} style={{ boxSizing: 'border-box' }}>
                                     <Button variant="contained" color="primary" type="submit">
                                         Entrar
                                     </Button>
